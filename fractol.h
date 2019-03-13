@@ -6,7 +6,7 @@
 /*   By: bbear <bbear@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/10 18:31:51 by bbear             #+#    #+#             */
-/*   Updated: 2019/03/11 20:29:57 by bbear            ###   ########.fr       */
+/*   Updated: 2019/03/13 19:46:46 by bbear            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,19 @@
 # include "mlx.h"
 # include <math.h>
 # include <stdlib.h>
+
+typedef struct	s_frac
+{
+	double		newim;
+	double		newre;
+	double		oldre;
+	double		oldim;
+	int			i;
+	int			x;
+	int			y;
+	double		cre;
+	double		cim;
+}				t_frac;
 
 typedef struct	s_fract
 {
@@ -28,11 +41,18 @@ typedef struct	s_fract
 	int			end;
 	int			wid;
 	int			hei;
+	int			maxiter;
+	int			x;
+	int			y;
+	t_frac		frac;
 }				t_fract;
 
 int		key_press(int key, void *param);
 int		ft_close(void);
-void	winresize(int key, t_fract *fract);
-
+//void	winresize(int key, t_fract *fract);
+void	julia(t_fract *fract);
+void	mandelbrot(t_fract *fract);
+int		mouse_move(int x, int y, void *param);
+void	draw(t_fract *fract);
 
 #endif

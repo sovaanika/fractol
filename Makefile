@@ -1,6 +1,6 @@
 NAME = fractol
 SRCSFOLDER = ./srcs/
-SRCS = error.c winresize.c keyfunctions.c main.c resize.c move.c draw.c
+SRCS = keyfunctions.c main.c julia.c mandelbrot.c draw.c
 OBJNAME = $(SRCS:.c=.o)
 OBJDIR = ./obj/
 OBJ = $(addprefix $(OBJDIR),$(OBJNAME))
