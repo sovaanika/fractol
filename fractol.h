@@ -6,7 +6,7 @@
 /*   By: bbear <bbear@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/10 18:31:51 by bbear             #+#    #+#             */
-/*   Updated: 2019/03/13 19:46:46 by bbear            ###   ########.fr       */
+/*   Updated: 2019/03/14 19:59:40 by bbear            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "mlx.h"
 # include <math.h>
 # include <stdlib.h>
+# include "./libft/libft.h"
 
 typedef struct	s_frac
 {
@@ -28,6 +29,10 @@ typedef struct	s_frac
 	int			y;
 	double		cre;
 	double		cim;
+	double		maxre;
+	double		maxim;
+	double		minre;
+	double		minim;
 }				t_frac;
 
 typedef struct	s_fract
