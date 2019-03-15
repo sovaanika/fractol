@@ -6,7 +6,7 @@
 /*   By: bbear <bbear@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/10 18:31:18 by bbear             #+#    #+#             */
-/*   Updated: 2019/03/14 19:55:05 by bbear            ###   ########.fr       */
+/*   Updated: 2019/03/15 20:39:02 by bbear            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,10 @@ void	init(t_fract *fract)
 	fract->hei = 1500;
 	fract->frac.cre = -0.70176;
 	fract->frac.cim = -0.3842;
+	fract->minre = 0;
+	fract->minim = 0;
+	fract->maxre = fract->wid;
+	fract->maxim = fract->hei;
 	fract->x = 0;
 	fract->y = 0;
 	fract->win_ptr = mlx_new_window(fract->mlx_ptr, fract->wid, fract->hei, "fract");
@@ -45,17 +49,23 @@ void	init(t_fract *fract)
 	&fract->size_l, &fract->end);
 }
 
-// int		mouse_press(int button, int x, int y, void *param)
-// {
-// 	t_fract	*fract;
+int		mouse_press(int button, int x, int y, void *param)
+{
+	t_fract	*fract;
 
-// 	fract = (t_fract *)param;
-// 	if (button == 1)
-// 	{
-// 		mlx_hook(fract->win_ptr, 4, 0, zoom, (void *)fract);
-// 	}
-// 	return (0);
-// }
+	fract = (t_fract *)param;
+	//if (button == 1)
+	//{
+		if (button == 4)
+		{
+			zoomin(x, y, fract);
+			draw(fract);
+		}
+
+		//mlx_hook(fract->win_ptr, 4, 0, zoom, (void *)fract);
+	//}
+	return (0);
+}
 
 int		checkargs(int i, char *str)
 {
@@ -82,13 +92,13 @@ int		main(int argc, char **argv)
 			fract = (t_fract *)malloc(sizeof(*fract));
 			fract->mlx_ptr = mlx_init();
 			fract->maxiter = 40;
-			fract->zoom = 1;
 			if (!arg[0])
 			{
 				init(fract);
 				mandelbrot(fract);
 				mlx_key_hook(fract->win_ptr, key_press, (void *)fract);
 				mlx_hook(fract->win_ptr, 17, 0, ft_close, (void *)0);
+				mlx_mouse_hook(fract->win_ptr, mouse_press, (void *)fract);
 				//mlx_hook(fract->win_ptr, 4, 0, mouse_press, (void *)fract);
 				//mlx_hook(fract->win_ptr, 5, 1L<<12, zoomout, (void *)fract);
 				mlx_loop(fract->mlx_ptr);

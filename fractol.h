@@ -6,7 +6,7 @@
 /*   By: bbear <bbear@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/10 18:31:51 by bbear             #+#    #+#             */
-/*   Updated: 2019/03/14 19:59:40 by bbear            ###   ########.fr       */
+/*   Updated: 2019/03/15 20:36:51 by bbear            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,6 @@ typedef struct	s_frac
 	int			y;
 	double		cre;
 	double		cim;
-	double		maxre;
-	double		maxim;
-	double		minre;
-	double		minim;
 }				t_frac;
 
 typedef struct	s_fract
@@ -50,6 +46,10 @@ typedef struct	s_fract
 	int			x;
 	int			y;
 	t_frac		frac;
+	double		maxre;
+	double		maxim;
+	double		minre;
+	double		minim;
 }				t_fract;
 
 int		key_press(int key, void *param);
@@ -59,5 +59,9 @@ void	julia(t_fract *fract);
 void	mandelbrot(t_fract *fract);
 int		mouse_move(int x, int y, void *param);
 void	draw(t_fract *fract);
+//int		zoom(int button, int x, int y, void *param);
+void	zoomin(int x, int y, t_fract *fract);
+double	interpolate(double start, double end, double interpolation);
+int		mouse_press(int button, int x, int y, void *param);
 
 #endif
