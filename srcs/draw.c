@@ -6,7 +6,7 @@
 /*   By: bbear <bbear@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/27 16:24:23 by bbear             #+#    #+#             */
-/*   Updated: 2019/03/15 20:12:30 by bbear            ###   ########.fr       */
+/*   Updated: 2019/03/21 19:31:43 by bbear            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	draw(t_fract *fract)
 	int		x;
 	int		y;
 
+	mlx_clear_window(fract->mlx_ptr, fract->win_ptr);
 	x = -1;
 	while (++x < fract->wid)
 	{
@@ -26,6 +27,6 @@ void	draw(t_fract *fract)
 			fract->data[y * fract->wid + x] = 0;
 		}
 	}
-	//julia(fract);
-	mandelbrot(fract);
+	julia(fract);
+	//mandelbrot(fract);
 }

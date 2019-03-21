@@ -6,7 +6,7 @@
 /*   By: bbear <bbear@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/10 18:31:51 by bbear             #+#    #+#             */
-/*   Updated: 2019/03/15 20:36:51 by bbear            ###   ########.fr       */
+/*   Updated: 2019/03/21 19:01:17 by bbear            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct	s_fract
 	int			maxiter;
 	int			x;
 	int			y;
+	double		zoom;
 	t_frac		frac;
 	double		maxre;
 	double		maxim;
@@ -60,7 +61,7 @@ void	mandelbrot(t_fract *fract);
 int		mouse_move(int x, int y, void *param);
 void	draw(t_fract *fract);
 //int		zoom(int button, int x, int y, void *param);
-void	zoomin(int x, int y, t_fract *fract);
+void	zoomin(int x, int y, t_fract *fract, double zoom);
 double	interpolate(double start, double end, double interpolation);
 int		mouse_press(int button, int x, int y, void *param);
 

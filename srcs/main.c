@@ -6,7 +6,7 @@
 /*   By: bbear <bbear@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/10 18:31:18 by bbear             #+#    #+#             */
-/*   Updated: 2019/03/15 20:39:02 by bbear            ###   ########.fr       */
+/*   Updated: 2019/03/21 19:01:20 by bbear            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,12 @@ int		mouse_move(int x, int y, void *param)
 	t_fract	*fract;
 
 	fract = (t_fract *)param;
-	if (x > fract->x)
-		fract->frac.cre += 0.0025;
-	else if (x < fract->x)
-		fract->frac.cre -= 0.0025;
-	if (y > fract->y)
-		fract->frac.cim += 0.0025;
-	else if (y < fract->y)
-		fract->frac.cim -= 0.0025;
-	fract->x = x;
-	fract->y = y;
-	draw(fract);
+	if (fract->zoom == 1)
+	{
+		fract->frac.cre = (x - 0.5 * fract->wid) * 0.0015;
+		fract->frac.cim = (y - 0.5 * fract->hei) * 0.0015;
+		draw(fract);
+	}
 	return (0);
 }
 
@@ -43,6 +38,7 @@ void	init(t_fract *fract)
 	fract->maxim = fract->hei;
 	fract->x = 0;
 	fract->y = 0;
+	fract->zoom = 1;
 	fract->win_ptr = mlx_new_window(fract->mlx_ptr, fract->wid, fract->hei, "fract");
 	fract->img_ptr = mlx_new_image(fract->mlx_ptr, fract->wid, fract->hei);
 	fract->data = (int *)mlx_get_data_addr(fract->img_ptr, &fract->bpp,
@@ -58,7 +54,12 @@ int		mouse_press(int button, int x, int y, void *param)
 	//{
 		if (button == 4)
 		{
-			zoomin(x, y, fract);
+			zoomin(x, y, fract, 1.1);
+			draw(fract);
+		}
+		else if (button == 5)
+		{
+			zoomin(x, y, fract, 0.9);
 			draw(fract);
 		}
 
@@ -109,6 +110,7 @@ int		main(int argc, char **argv)
 				julia(fract);
 				mlx_hook(fract->win_ptr, 6, 0, mouse_move, (void *)fract);
 				mlx_key_hook(fract->win_ptr, key_press, (void *)fract);
+				mlx_mouse_hook(fract->win_ptr, mouse_press, (void *)fract);
 				mlx_hook(fract->win_ptr, 17, 0, ft_close, (void *)0);
 				mlx_loop(fract->mlx_ptr);
 			}
