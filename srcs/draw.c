@@ -6,7 +6,7 @@
 /*   By: bbear <bbear@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/27 16:24:23 by bbear             #+#    #+#             */
-/*   Updated: 2019/03/21 19:31:43 by bbear            ###   ########.fr       */
+/*   Updated: 2019/03/25 20:16:04 by bbear            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,6 @@ void	draw(t_fract *fract)
 			fract->data[y * fract->wid + x] = 0;
 		}
 	}
-	julia(fract);
-	//mandelbrot(fract);
+	//julia(fract);
+	mandelbrot(fract);
 }

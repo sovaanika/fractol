@@ -6,7 +6,7 @@
 /*   By: bbear <bbear@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/10 18:31:51 by bbear             #+#    #+#             */
-/*   Updated: 2019/03/21 19:01:17 by bbear            ###   ########.fr       */
+/*   Updated: 2019/03/25 18:30:09 by bbear            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "mlx.h"
 # include <math.h>
 # include <stdlib.h>
+#include <stdio.h>
 # include "./libft/libft.h"
 
 typedef struct	s_frac
@@ -51,6 +52,10 @@ typedef struct	s_fract
 	double		maxim;
 	double		minre;
 	double		minim;
+	double		mre;
+	double		mim;
+	double		movex;
+	double		movey;
 }				t_fract;
 
 int		key_press(int key, void *param);

@@ -6,7 +6,7 @@
 /*   By: bbear <bbear@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/10 18:31:18 by bbear             #+#    #+#             */
-/*   Updated: 2019/03/21 19:01:20 by bbear            ###   ########.fr       */
+/*   Updated: 2019/03/25 20:06:44 by bbear            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,21 @@ int		mouse_move(int x, int y, void *param)
 
 void	init(t_fract *fract)
 {
-	fract->wid = 1500;
-	fract->hei = 1500;
+	fract->wid = 1200;
+	fract->hei = 1200;
 	fract->frac.cre = -0.70176;
 	fract->frac.cim = -0.3842;
 	fract->minre = 0;
 	fract->minim = 0;
 	fract->maxre = fract->wid;
 	fract->maxim = fract->hei;
+	fract->mre = fract->wid * 0.5;
+	fract->mim = fract->hei * 0.5;
 	fract->x = 0;
 	fract->y = 0;
 	fract->zoom = 1;
+	fract->movex = 0;
+	fract->movey = 0;
 	fract->win_ptr = mlx_new_window(fract->mlx_ptr, fract->wid, fract->hei, "fract");
 	fract->img_ptr = mlx_new_image(fract->mlx_ptr, fract->wid, fract->hei);
 	fract->data = (int *)mlx_get_data_addr(fract->img_ptr, &fract->bpp,
