@@ -6,21 +6,20 @@
 /*   By: bbear <bbear@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/09 15:10:28 by bbear             #+#    #+#             */
-/*   Updated: 2019/03/26 17:12:01 by bbear            ###   ########.fr       */
+/*   Updated: 2019/04/01 19:46:12 by bbear            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fractol.h"
 
-void	move(int key, t_fract *fract)
+void	move(int key, t_fract *f)
 {
 	if (key == 125)
-		fract->starty += 10;
+		f->movey -= 0.1;
 	else if (key == 126)
-		fract->starty -= 10;
+		f->movey += 0.1;
 	else if (key == 123)
-		fract->startx -= 10;
+		f->movex += 0.1;
 	else
-		fract->startx += 10;
-	draw(fract);
+		f->movex -= 0.1;
 }

@@ -6,7 +6,7 @@
 /*   By: bbear <bbear@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/10 18:31:18 by bbear             #+#    #+#             */
-/*   Updated: 2019/03/30 17:12:04 by bbear            ###   ########.fr       */
+/*   Updated: 2019/04/01 20:32:40 by bbear            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,16 @@ void	init(t_fract *f)
 {
 	f->wid = 1200;
 	f->hei = 1200;
-	f->frac.cre = 0;//-0.70176;
-	f->frac.cim = 0;//-0.3842;
+	f->frac.cre = 0;
+	f->frac.cim = 0;
 	f->x = 0;
 	f->y = 0;
+	f->thread = 120;
 	f->zoom = 1;
 	f->flag = 0;
 	f->movex = 0;
 	f->movey = 0;
+	colorinit(f);
 	f->win_ptr = mlx_new_window(f->mlx_ptr, f->wid, f->hei, "fractol");
 	f->img_ptr = mlx_new_image(f->mlx_ptr, f->wid, f->hei);
 	f->data = (int *)mlx_get_data_addr(f->img_ptr, &f->bpp,
@@ -99,27 +101,13 @@ int		main(int argc, char **argv)
 			f->mlx_ptr = mlx_init();
 			f->maxiter = 40;
 			f->arg = argv[1];
-			//if (!a.arg[0])
-			//{
-				init(f);
-				//mandelbrot(f);
-				fract(f);
-				mlx_hook(f->win_ptr, 6, 0, mouse_move, (void *)f);
-				mlx_key_hook(f->win_ptr, key_press, (void *)f);
-				mlx_hook(f->win_ptr, 17, 0, ft_close, (void *)0);
-				mlx_mouse_hook(f->win_ptr, mouse_press, (void *)f);
-				mlx_loop(f->mlx_ptr);
-			//}
-			// else if (!a.arg[1])
-			// {
-			// 	init(f);
-			// 	julia(f);
-			// 	mlx_hook(f->win_ptr, 6, 0, mouse_move, (void *)f);
-			// 	mlx_key_hook(f->win_ptr, key_press, (void *)f);
-			// 	mlx_mouse_hook(f->win_ptr, mouse_press, (void *)f);
-			// 	mlx_hook(f->win_ptr, 17, 0, ft_close, (void *)0);
-			// 	mlx_loop(f->mlx_ptr);
-			// }
+			init(f);
+			draw(f);
+			mlx_hook(f->win_ptr, 6, 0, mouse_move, (void *)f);
+			mlx_key_hook(f->win_ptr, key_press, (void *)f);
+			mlx_hook(f->win_ptr, 17, 0, ft_close, (void *)0);
+			mlx_mouse_hook(f->win_ptr, mouse_press, (void *)f);
+			mlx_loop(f->mlx_ptr);
 		}
 	}
 }
